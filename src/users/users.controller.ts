@@ -19,6 +19,7 @@ import { UsersService } from "./users.service";
 
 @Controller("users")
 @Serialize<UserDto>(UserDto)
+// @UseInterceptors(CurrentUserInterceptor)
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
