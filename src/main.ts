@@ -1,10 +1,16 @@
-import { NestFactory } from '@nestjs/core';
-import { MessagesModule } from './messages/messages.module';
-import { ValidationPipe } from '@nestjs/common';
-import { AppModule } from './app.module';
+import { ValidationPipe } from "@nestjs/common";
+import { NestFactory } from "@nestjs/core";
+import cookieSession from "cookie-session";
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.use(
+    cookieSession({
+      keys: ["key1"],
+    }),
+  );
 
   app.useGlobalPipes(
     new ValidationPipe({
